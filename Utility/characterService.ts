@@ -1,4 +1,4 @@
-import BeyondFile, { BeyondCharacter } from "./Models/BeyondCharacter";
+import BeyondFile, { BeyondCharacter } from "../Models/BeyondCharacter";
 
 
 async function getCharacterJson(characterNumber: string): Promise<string> {

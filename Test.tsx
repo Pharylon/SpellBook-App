@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
-import { GetCharacter } from "./characterService";
+import { GetCharacter } from "./Utility/characterService";
 
 
 export default function Test() {

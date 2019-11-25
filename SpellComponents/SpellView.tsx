@@ -86,10 +86,11 @@ const getDuration = (spell: ItemDefinition) => {
     return DurationType.UntilDispelledOrTriggered;
   }
   if (duration.durationType === DurationType.Concentration) {
-    return `${duration.durationInterval} ${duration.durationUnit} (Concentration)`;
+    // tslint:disable-next-line:max-line-length
+    return `${duration.durationInterval} ${duration.durationUnit}${duration.durationInterval > 1 ? "s" : ""} (Concentration)`;
   }
   if (duration.durationType === DurationType.Time) {
-    return `${duration.durationInterval} ${duration.durationUnit}`;
+    return `${duration.durationInterval} ${duration.durationUnit}${duration.durationInterval > 1 ? "s" : ""}`;
   }
   console.log("Unknown Duration", duration, spell.name);
 };

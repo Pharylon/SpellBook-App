@@ -7,20 +7,33 @@ import Link from "../Link";
 import { BeyondCharacter } from "../Models/BeyondCharacter";
 import CharacterStore from "../Utility/CharacterStore";
 
+const myTestCharactersToLoad = [
+  "19233787",
+  "11598890",
+  "3312827",
+  "16871372",
+];
 
 export default function AddCharacterScreen(props: NavigationStackScreenProps) {
-  const [inputValue, setInputValue] = useState("3312827");
+  const [inputValue, setInputValue] = useState(myTestCharactersToLoad[0]);
   const addCharacter = (newCharacter: BeyondCharacter) => {
     CharacterStore.saveCharacter(newCharacter);
-    props.navigation.navigate("Home", {update: true});
+    props.navigation.navigate("Home", {newId: newCharacter.id});
   };
   const getCharacter = async () => {
-    const myCharacter = await GetCharacter(inputValue);
+    const index = myTestCharactersToLoad.indexOf(inputValue) + 1;
+    console.log("NexVal", myTestCharactersToLoad[index]);
+    setInputValue(myTestCharactersToLoad[index]);
+    let characterId = inputValue;
+    if (characterId.toLowerCase().startsWith("http")){
+      characterId = characterId.substring(characterId.lastIndexOf("/"));
+    }
+    const myCharacter = await GetCharacter(characterId);
     if (myCharacter && myCharacter.name){
       Alert.alert("Add Character", `Do you wish to add ${myCharacter.name}?`, 
       [
-        {text: "Yes", onPress: () => addCharacter(myCharacter)},
         {text: "No", onPress: () => console.log("Nope")},
+        {text: "Yes", onPress: () => addCharacter(myCharacter)},
       ]);
     }
   };

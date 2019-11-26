@@ -11,11 +11,9 @@ export default function BeyondFileView(props: NavigationStackScreenProps) {
   async function UpdateBeyondFile(id: number) {
     if (id) {
       const myFile = await CharacterStore.getCharacter(id);
-      console.log("File", myFile);
       setFile(myFile);
     }
   }
-  console.log("Rendering");
 
   useEffect(() => {
     const myId = props.navigation.getParam("id");

@@ -4,15 +4,10 @@ import { Spell, Activation, DefinitionRange, Origin, ItemDefinition, Duration, D
 import { View, WebView, Text } from "react-native";
 import { HeaderTitle, NavigationStackScreenProps } from "react-navigation-stack";
 
-export interface ISpellViewProps {
-  spell: Spell;
-}
-
 export default function SpellView(props: NavigationStackScreenProps) {
   const spell = props.navigation.getParam("spell");
   return (
     <View style={{ marginBottom: 10 }}>
-      <HeaderTitle>{spell.definition.name}</HeaderTitle>
       <View>
         <Text>Casting Time: {getCastingTime(spell.definition.activation)}</Text>
         <Text>Range: {getRange(spell.definition)}</Text>
@@ -45,6 +40,8 @@ export default function SpellView(props: NavigationStackScreenProps) {
     </View>
   );
 }
+
+SpellView.navigationOptions = ({navigation}) => ({title: navigation.getParam("spell").definition.name});
 
 const getSave = (save: number | null) => {
   if (save === 1) {

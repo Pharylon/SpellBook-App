@@ -14,10 +14,8 @@ const CharacterStore = {
     try {
       AsyncStorage.setItem(character.id.toString(), asJson);
       const charMap = await CharacterStore.getCharacterList();
-      console.log("CharMap", charMap);
       if (!charMap.find(x => x.id === character.id)){
         const newCharMap = [...charMap, {id: character.id, name: character.name}];
-        console.log("NewCHarMap", newCharMap);
         await CharacterStore.saveCharacterList(newCharMap);
       }
     } catch (e) {
@@ -43,6 +41,10 @@ const CharacterStore = {
       // console.log("CharList", json);
       if (json) {
         const characterList = JSON.parse(json) as CharacterMap[];
+        // AsyncStorage.removeItem(characterListKey);
+        // for (const char of characterList){
+        //   CharacterStore.deleteCharacter(char.id);
+        // }
         if (characterList.length){
           return characterList;
         }        
@@ -59,6 +61,14 @@ const CharacterStore = {
       AsyncStorage.setItem(characterListKey, asJson);
     } catch (e) {
       console.log("saveCharacterList Error", e);
+    }
+  },
+
+  deleteCharacter: async (charId: number) => {
+    try {
+      AsyncStorage.removeItem(charId.toString());
+    } catch (e) {
+      console.log("Save Character Error", e);
     }
   },
 

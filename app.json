@@ -27,7 +27,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.example.myapp"
+      "package": "com.zachshuford.spellbook"
   }
   }
 }

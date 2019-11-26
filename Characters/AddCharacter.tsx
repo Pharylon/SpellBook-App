@@ -22,7 +22,6 @@ export default function AddCharacterScreen(props: NavigationStackScreenProps) {
   };
   const getCharacter = async () => {
     const index = myTestCharactersToLoad.indexOf(inputValue) + 1;
-    console.log("NexVal", myTestCharactersToLoad[index]);
     setInputValue(myTestCharactersToLoad[index]);
     let characterId = inputValue;
     if (characterId.toLowerCase().startsWith("http")){

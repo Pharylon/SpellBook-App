@@ -7,7 +7,7 @@ import HTML from "react-native-render-html";
 
 export default function SpellView(props: NavigationStackScreenProps) {
   const spell = props.navigation.getParam("spell");
-  console.log("SpellText", spell.definition.description.trim());
+  // console.log("SpellText", spell.definition.description.trim());
   return (
     <View style={{ marginBottom: 10 }}>
       <View>

@@ -1,11 +1,13 @@
 import React from "react";
 // tslint:disable-next-line:max-line-length
 import { Spell, Activation, DefinitionRange, Origin, ItemDefinition, Duration, DurationType } from "../Models/BeyondCharacter";
-import { View, WebView, Text } from "react-native";
+import { View, WebView, Text, ScrollView } from "react-native";
 import { HeaderTitle, NavigationStackScreenProps } from "react-navigation-stack";
+import HTML from "react-native-render-html";
 
 export default function SpellView(props: NavigationStackScreenProps) {
   const spell = props.navigation.getParam("spell");
+  console.log("SpellText", spell.definition.description.trim());
   return (
     <View style={{ marginBottom: 10 }}>
       <View>
@@ -18,6 +20,9 @@ export default function SpellView(props: NavigationStackScreenProps) {
             <Text>Save: {getSave(spell.definition.saveDcAbilityId)}</Text>
           )
         }
+        <ScrollView style={{ height: "100%" }}>
+          <HTML html={spell.definition.description.trim()} />
+        </ScrollView>
       </View>
       {/* <View>Casting Time: {getCastingTime(this.props.spell.definition.activation)}</View>
         <View>Range: {getRange(this.props.spell.definition)}</View>

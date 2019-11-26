@@ -12,7 +12,7 @@ export default function SpellBook(props: {spells: Spell[], nav: NavigationStackS
   function getSpellsToShow(){
     if (inputValue){
       const toLower = inputValue.toLowerCase();
-      return props.spells.filter(x => x.definition.name.toLowerCase().startsWith(toLower));
+      return props.spells.filter(x => x.definition.name.toLowerCase().indexOf(toLower) > -1);
     }
     return props.spells;
   }

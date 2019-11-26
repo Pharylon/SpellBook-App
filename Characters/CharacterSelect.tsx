@@ -10,19 +10,15 @@ import { TouchableHighlight } from "react-native-gesture-handler";
 
 export default function CharacterSelect(props: NavigationStackScreenProps) {
   const newId: number = props.navigation.getParam("newId");
-  console.log("NewId", newId);
   const [characterList, setCharacterList] = useState<CharacterMap[]>([]);
   async function LoadCharacterList() {
     const myCharacters = await CharacterStore.getCharacterList();
-    console.log("CharList", myCharacters, characterList);
     const existingCharacterIds = characterList.map(x => x.id);
     if (myCharacters.some(x => !existingCharacterIds.includes(x.id))){
-      console.log("Running Set", myCharacters, characterList);
       setCharacterList(myCharacters);
     }    
   }
   useEffect(() => {
-    console.log("UseEffect");
     LoadCharacterList();
   });
   return (
